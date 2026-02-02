@@ -8,7 +8,6 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <style>
     :root {
       --bg-dark: #0b0b0b;
@@ -36,12 +35,29 @@
       margin: auto;
     }
 
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       text-align: center;
+      background: url('https://images.unsplash.com/photo-1581276879432-15a82cf2c8d4?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+      color: #fff;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    .hero h1, .hero p, .hero .cta-btn {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
@@ -55,7 +71,7 @@
     }
 
     .hero p {
-      color: var(--text-muted);
+      color: #ddd;
       max-width: 600px;
       margin: 0 auto 40px;
     }
@@ -67,11 +83,20 @@
       padding: 16px 42px;
       font-weight: 600;
       cursor: pointer;
+      font-size: 1rem;
+      border-radius: 6px;
+      transition: transform 0.2s;
     }
 
+    .cta-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* PROMISE SECTION */
     .promise h2 {
       font-size: 2.2rem;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .grid {
@@ -85,6 +110,18 @@
       background: #111;
       padding: 30px;
       border: 1px solid #222;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--accent);
     }
 
     footer {
@@ -94,6 +131,7 @@
       font-size: 0.85rem;
     }
 
+    /* MODAL */
     .modal {
       position: fixed;
       inset: 0;
@@ -101,6 +139,7 @@
       display: none;
       align-items: center;
       justify-content: center;
+      z-index: 10;
     }
 
     .modal-content {
@@ -109,23 +148,49 @@
       max-width: 400px;
       width: 90%;
       text-align: center;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .modal-content button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      border: none;
+      background: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      color: #000;
+      transition: transform 0.2s;
+    }
+
+    .modal-content button:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .cta-btn {
+        padding: 14px 28px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Hero Section -->
+  <!-- HERO SECTION -->
   <section class="hero">
     <h1>We Don’t Break Down<br><span>We Rebuild</span></h1>
     <p>Music is the soundtrack. Purpose is the mission.</p>
     <button class="cta-btn" onclick="openModal()">JOIN HERE</button>
   </section>
 
-  <!-- Promise / Features Section -->
+  <!-- PROMISE / FEATURES -->
   <section class="promise">
     <h2>The Rebuild Standard</h2>
-
     <div class="grid">
       <div class="card"><h3>Music</h3><p>Soundtracks for pressure.</p></div>
       <div class="card"><h3>Merch</h3><p>Built with intention.</p></div>
@@ -136,25 +201,17 @@
 
   <footer>© Mancito Telfort</footer>
 
-  <!-- Modal / Email Capture -->
+  <!-- MODAL / KLAVIYO FORM -->
   <div class="modal" id="joinModal">
     <div class="modal-content">
       <h3>Join the Rebuild</h3>
 
-      <!-- Klaviyo Form Placeholder -->
+      <!-- Klaviyo Form -->
       <div class="klaviyo-form-SDZWDX"></div>
-
-      <!-- Your exact Klaviyo script -->
-      <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/XWkVdt/klaviyo.js?company_id=XWkVdt'></script>
-      <script type="text/javascript">
-      !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}(); 
-      </script>
-
-      <button onclick="closeModal()" style="margin-top:20px;">Close</button>
     </div>
   </div>
 
-  <!-- Modal Script -->
+  <!-- SCRIPTS -->
   <script>
     function openModal() {
       document.getElementById('joinModal').style.display = 'flex';
@@ -162,6 +219,12 @@
     function closeModal() {
       document.getElementById('joinModal').style.display = 'none';
     }
+  </script>
+
+  <!-- KLAVIYO SCRIPT (Keep at the end of body) -->
+  <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/XWkVdt/klaviyo.js?company_id=XWkVdt'></script>
+  <script type="text/javascript">
+  !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}(); 
   </script>
 
 </body>
